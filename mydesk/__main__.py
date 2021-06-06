@@ -1,4 +1,5 @@
 import time
+import argparse
 
 from pathlib import Path
 
@@ -11,10 +12,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
+from gooey import Gooey
 
+@Gooey(
+    program_name='MyDesk'
+)
 def main():
-    secure_id = input("RSA Secure ID: ")
-
+    parser = argparse.ArgumentParser(description='MyDesk')
+    parser.add_argument('secure_id', metavar='RSA SECURE ID')
+    args = parser.parse_args()
+    
     option = Options()
     #options.add("--headless")
     
@@ -36,7 +43,7 @@ def main():
 
         secureid_is_visible = EC.visibility_of_element_located((By.XPATH, "//form[@name='loginForm']//input[@name='passwd1']"))
         secureid = WebDriverWait(driver, 20).until(secureid_is_visible)
-        secureid.send_keys("" + secure_id)
+        secureid.send_keys("" + args.secure_id)
         
         loginform.submit()
         
