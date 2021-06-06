@@ -1,4 +1,5 @@
 import time
+import os.path
 import argparse
 
 from pathlib import Path
@@ -12,6 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
+from retry import retry
 from gooey import Gooey
 
 @Gooey(
@@ -51,12 +53,16 @@ def main():
         download_link = WebDriverWait(driver, 20).until(download_link_is_visible)
         download_link.click()
 
-        stage1 = EC.element_to_be_clickable((By.XPATH, "//a[contains(text(), 'Launching')]"))
-        WebDriverWait(driver, 10).until(stage1)
+        waitForFile()
     except:
         raise
     finally:
         driver.close()
+
+@retry(tries=5, delay=3)
+def waitForFile():
+    if not Path(os.path.expanduser("~/Downloads/launchExtMSAD.ica")).exists():
+        raise FileNotFoundError
 
 
 if __name__ == '__main__':
