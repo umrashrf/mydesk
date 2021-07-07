@@ -1,6 +1,8 @@
 import time
 import os.path
 import argparse
+import platform
+import subprocess
 
 from pathlib import Path
 
@@ -53,7 +55,10 @@ def main():
         download_link = WebDriverWait(driver, 20).until(download_link_is_visible)
         download_link.click()
 
-        waitForFile()
+        ica_file = waitForFile()
+        
+        if "macOS" in platform.platform():
+            subprocess.call(["open", ica_file])
     except:
         raise
     finally:
@@ -61,8 +66,10 @@ def main():
 
 @retry(tries=5, delay=3)
 def waitForFile():
-    if not Path(os.path.expanduser("~/Downloads/launchExtMSAD.ica")).exists():
+    ica_file = Path(os.path.expanduser("~/Downloads/launchExtMSAD.ica"))
+    if not ica_file.exists():
         raise FileNotFoundError
+    return ica_file
 
 
 if __name__ == '__main__':
