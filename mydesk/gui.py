@@ -29,7 +29,9 @@ def main():
     option = Options()
     #options.add("--headless")
     
-    driver = webdriver.Chrome(options=option, executable_path=Path("chromedriver").absolute())
+    driver = webdriver.Chrome(
+                options=option, 
+                executable_path="/usr/local/bin/chromedriver")
     
     try:
         driver.get("http://mydesk.morganstanley.com")
