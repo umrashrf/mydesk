@@ -1,4 +1,10 @@
-Install
+Dev
+===
+
+    pipenv install .
+    mydesk
+
+Release
 =======
 
-    /usr/bin/python3 -m pip install --user --use-feature=in-tree-build .
+    ./pyinstaller.sh
