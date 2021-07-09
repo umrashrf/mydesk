@@ -23,6 +23,9 @@ from gooey import Gooey
 )
 def main():
     parser = argparse.ArgumentParser(description='MyDesk')
+    parser.add_argument('username', metavar='USERNAME')
+    parser.add_argument('password', metavar='PASSWORD')
+    parser.add_argument('secure_pin', metavar='SECURE PIN')
     parser.add_argument('secure_id', metavar='RSA SECURE ID')
     args = parser.parse_args()
     
@@ -41,15 +44,15 @@ def main():
 
         username_is_visible = EC.visibility_of_element_located((By.XPATH, "//form[@name='loginForm']//input[@name='login']"))
         username = WebDriverWait(driver, 20).until(username_is_visible)
-        username.send_keys("")
+        username.send_keys(args.username)
 
         password_is_visible = EC.visibility_of_element_located((By.XPATH, "//form[@name='loginForm']//input[@name='passwd']"))
         password = WebDriverWait(driver, 20).until(password_is_visible)
-        password.send_keys("")
+        password.send_keys(args.password)
 
         secureid_is_visible = EC.visibility_of_element_located((By.XPATH, "//form[@name='loginForm']//input[@name='passwd1']"))
         secureid = WebDriverWait(driver, 20).until(secureid_is_visible)
-        secureid.send_keys("" + args.secure_id)
+        secureid.send_keys(args.secure_pin + args.secure_id)
         
         loginform.submit()
         
