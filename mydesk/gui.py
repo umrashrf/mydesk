@@ -23,6 +23,7 @@ from gooey import Gooey
 )
 def main():
     parser = argparse.ArgumentParser(description='MyDesk')
+    parser.add_argument('website', metavar='WEBSITE')
     parser.add_argument('username', metavar='USERNAME')
     parser.add_argument('password', metavar='PASSWORD')
     parser.add_argument('secure_pin', metavar='SECURE PIN')
@@ -37,7 +38,7 @@ def main():
                 executable_path="/usr/local/bin/chromedriver")
     
     try:
-        driver.get("http://mydesk.morganstanley.com")
+        driver.get(args.website)
         
         loginform_is_visible = EC.visibility_of_element_located((By.XPATH, "//form[@name='loginForm']"))
         loginform = WebDriverWait(driver, 20).until(loginform_is_visible)
