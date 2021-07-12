@@ -3,6 +3,7 @@ import os.path
 import argparse
 import platform
 import subprocess
+import configparser
 
 from pathlib import Path
 
@@ -22,14 +23,30 @@ from gooey import Gooey
     program_name='MyDesk'
 )
 def main():
-    parser = argparse.ArgumentParser(description='MyDesk')
-    parser.add_argument('website', metavar='WEBSITE')
-    parser.add_argument('username', metavar='USERNAME')
-    parser.add_argument('password', metavar='PASSWORD')
-    parser.add_argument('secure_pin', metavar='SECURE PIN')
+    # load/read
+    default_configpath = Path.home() / "mydesk.ini"
+    configpath = os.getenv("MYDESK_CONFIG_FILE", default_configpath)
+    
+    config = configparser.ConfigParser()
+    config.read(configpath)
+
+    parser = argparse.ArgumentParser()(description='MyDesk')
+    parser.add_argument('website', metavar='WEBSITE', default=config['DEFAULT']['WEBSITE'])
+    parser.add_argument('username', metavar='USERNAME', default=config['DEFAULT']['USERNAME'])
+    parser.add_argument('password', metavar='PASSWORD', default=config['DEFAULT']['PASSWORD'])
+    parser.add_argument('secure_pin', metavar='SECURE PIN', default=config['DEFAULT']['SECURE PIN'])
     parser.add_argument('secure_id', metavar='RSA SECURE ID')
     args = parser.parse_args()
-    
+
+    # change/save    
+    config['DEFAULT']['WEBSITE'] = args.website
+    config['DEFAULT']['USERNAME'] = args.username
+    config['DEFAULT']['PASSWORD'] = args.password
+    config['DEFAULT']['SECURE PIN'] = args.secure_pin
+
+    with open(configpath, 'w') as configfile:
+        config.write(configfile)
+
     option = Options()
     #options.add("--headless")
     
