@@ -13,3 +13,13 @@ Release
 .. code-block:: shell
 
     ./pyinstaller.sh
+
+Environment Variables
+=====================
+
+.. list-table:: Supported Environment Variables
+
+    * - Name
+      - Description
+    * - MYDESK_CONFIG_FILE
+      - Defaults to ~/mydesk.ini
