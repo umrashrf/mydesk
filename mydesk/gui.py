@@ -1,6 +1,5 @@
 import time
 import os.path
-import argparse
 import platform
 import subprocess
 import configparser
@@ -17,7 +16,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from retry import retry
-from gooey import Gooey
+from gooey import Gooey, GooeyParser
 
 @Gooey(
     program_name='MyDesk'
@@ -30,11 +29,11 @@ def main():
     config = configparser.ConfigParser()
     config.read(configpath)
 
-    parser = argparse.ArgumentParser()(description='MyDesk')
+    parser = GooeyParser(description='MyDesk')
     parser.add_argument('website', metavar='WEBSITE', default=config['DEFAULT']['WEBSITE'])
     parser.add_argument('username', metavar='USERNAME', default=config['DEFAULT']['USERNAME'])
-    parser.add_argument('password', metavar='PASSWORD', default=config['DEFAULT']['PASSWORD'])
-    parser.add_argument('secure_pin', metavar='SECURE PIN', default=config['DEFAULT']['SECURE PIN'])
+    parser.add_argument('password', metavar='PASSWORD', default=config['DEFAULT']['PASSWORD'], widget='PasswordField')
+    parser.add_argument('secure_pin', metavar='SECURE PIN', default=config['DEFAULT']['SECURE PIN'], widget='PasswordField')
     parser.add_argument('secure_id', metavar='RSA SECURE ID')
     args = parser.parse_args()
 
