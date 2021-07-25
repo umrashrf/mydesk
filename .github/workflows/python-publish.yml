@@ -15,7 +15,7 @@ on:
 jobs:
   deploy:
 
-    runs-on: macOS
+    runs-on: macos-11.0
 
     steps:
     - uses: actions/checkout@v2
