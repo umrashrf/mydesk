@@ -9,7 +9,7 @@ Dev
 .. code-block:: shell
 
     cp mydesk.ini ~/mydesk.ini (and also edit this file)
-    pipenv install .
+    CXXFLAGS="-I/opt/homebrew/include" pipenv install
     mydesk
 
 Release
