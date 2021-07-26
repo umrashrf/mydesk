@@ -26,10 +26,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pipenv
-        pipenv install
+        pip install build
     - name: Build package
-      run: pipenv run zsh pyinstaller.sh
+      run: python -m build
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@master
       with:
