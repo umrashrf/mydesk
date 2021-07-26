@@ -2,7 +2,19 @@
   :width: 400
   :alt: Preview
   
-  
+
+Prerequisites
+=============
+
+#. Download and Install Google Chrome
+#. Download and Install chromedriver https://sites.google.com/chromium.org/driver/
+#. Add chrome to PATH and give it executable rights
+
+.. codeblock:: shell
+
+    cp chromedriver /usr/local/bin
+    sudo xattr -d com.apple.quarantine /usr/local/bin/chromedriver
+
 Dev
 ===
 
