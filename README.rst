@@ -12,7 +12,7 @@ Prerequisites
 
 .. code-block:: shell
 
-    cp chromedriver /usr/local/bin
+    cp chromedriver /usr/local/bin/
     sudo xattr -d com.apple.quarantine /usr/local/bin/chromedriver
 
 Dev
