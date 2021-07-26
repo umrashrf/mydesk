@@ -9,6 +9,8 @@ gooey = "*"
 retry = "*"
 
 [dev-packages]
+build = "*"
+twine = "*"
 
 [requires]
 python_version = "3.9"
