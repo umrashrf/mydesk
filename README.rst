@@ -20,6 +20,7 @@ Dev
 
 .. code-block:: shell
 
+    brew install python@3.9
     CXXFLAGS="-I/opt/homebrew/include" pipenv install
 
     # this is because we need the latest pyinstaller for macOS M1 Silicon arm64 arch
