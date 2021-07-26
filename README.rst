@@ -38,7 +38,7 @@ Release
 
 .. code-block:: shell
 
-    ./pyinstaller.sh
+    pipenv run zsh pyinstaller.sh
 
 Environment Variables
 =====================
