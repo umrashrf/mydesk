@@ -7,7 +7,7 @@ name = "pypi"
 selenium = "*"
 gooey = "*"
 retry = "*"
-pyinstaller = "*"
+pyinstaller = ">=4.4"
 
 [dev-packages]
 
