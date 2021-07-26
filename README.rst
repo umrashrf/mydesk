@@ -10,7 +10,7 @@ Prerequisites
 #. Download and Install chromedriver https://sites.google.com/chromium.org/driver/
 #. Add chrome to PATH and give it executable rights
 
-.. codeblock:: shell
+.. code-block:: shell
 
     cp chromedriver /usr/local/bin
     sudo xattr -d com.apple.quarantine /usr/local/bin/chromedriver
